@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
+import os
 
 from dotenv import load_dotenv
 
 import requests
 
-keys = load_dotenv()
+load_dotenv()
 
 
 class OpenMeteoAPIClient:
@@ -82,7 +83,7 @@ class WeatherAPI:
         """
         self.url_base = "http://api.weatherapi.com/v1"
         self.url_historical_base = "http://api.weatherapi.com/v1/history.json"
-        self.api_key = keys["WEATHER_API_KEY"]
+        self.api_key = os.getenv("WEATHER_API_KEY")
 
     def get_historical_data(
         self,
